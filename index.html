@@ -436,5 +436,54 @@ const treesData = [
   image: 'Bougainvillea.jpg' }
 ];
 
+/* ===========================
+   App State
+   =========================== */
+let cart = []; // array of {id, name, price, qty}
+let activeCategory = 'All Trees';
+const spinner = document.getElementById('spinner');
+const grid = document.getElementById('grid');
+const catList = document.getElementById('catList');
+const showingText = document.getElementById('showingText');
+const cartList = document.getElementById('cartList');
+const cartTotal = document.getElementById('cartTotal');
+
+/* Helper: show spinner while a fake load happens */
+function showSpinner(show = true) {
+  spinner.setAttribute('aria-hidden', show ? 'false' : 'true');
+  if (show) spinner.classList.add('show'); else spinner.classList.remove('show');
+}
+
+/* ===========================
+   Categories dynamic load
+   =========================== */
+function getCategories() {
+  const cats = new Set(treesData.map(t => t.category));
+  return ['All Trees', ...Array.from(cats)];
+}
+
+function renderCategories() {
+  catList.innerHTML = '';
+  const categories = getCategories();
+  categories.forEach((c, idx) => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.textContent = c;
+    btn.dataset.category = c;
+    btn.setAttribute('role', 'tab');
+    btn.setAttribute('aria-pressed', c === activeCategory ? 'true' : 'false');
+    if (c === activeCategory) btn.classList.add('active');
+    btn.addEventListener('click', () => {
+      if (activeCategory === c) return;
+      activeCategory = c;
+      document.querySelectorAll('.cat-btn').forEach(x => { x.classList.remove('active'); x.setAttribute('aria-pressed','false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-pressed','true');
+      loadTreesFor(activeCategory);
+    });
+    catList.appendChild(btn);
+  });
+}
+
 </body>
 </html>
