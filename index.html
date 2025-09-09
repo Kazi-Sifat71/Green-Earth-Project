@@ -252,5 +252,52 @@
   </div>
 </section>
 
+
+<!-- Main content area -->
+<main id="shop" class="container" aria-live="polite">
+  <!-- Categories -->
+  <aside class="categories" aria-label="Categories">
+    <h3>Categories</h3>
+    <div id="catList" class="cat-list" role="tablist" aria-label="Tree categories"></div>
+  </aside>
+
+  <!-- Product grid + spinner -->
+  <section class="products" aria-label="Products">
+    <div class="tools">
+      <div class="showing" id="showingText">Showing: All Trees</div>
+      <div class="spinner" id="spinner" aria-hidden="true">
+        <div class="lds-dual-ring" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div id="grid" class="grid" role="list"></div>
+  </section>
+
+  <!-- Cart -->
+  <aside class="cart" aria-label="Shopping cart">
+    <h3>Your Cart</h3>
+    <div id="cartList" class="cart-list" aria-live="polite"></div>
+    <div class="total-row">
+      <div>Total</div>
+      <div id="cartTotal">৳0</div>
+    </div>
+  </aside>
+</main>
+
+<!-- About + Impact + Plant form -->
+<section class="about-impact">
+  <article id="about" class="about" aria-labelledby="aboutTitle">
+    <img src="./assets/about.png" alt="Young healthy green tree plant" />
+    <div>
+      <h2 id="aboutTitle">About the Campaign</h2>
+      <p>Green Earth is a global tree plantation initiative dedicated to fighting climate change. By joining our campaign you help restore forests, create habitats for wildlife, and support local communities.</p>
+      <ul>
+        <li>Restoration of natural habitats</li>
+        <li>Improvement of air quality</li>
+        <li>Support for local livelihoods</li>
+      </ul>
+    </div>
+  </article>
+
 </body>
 </html>
