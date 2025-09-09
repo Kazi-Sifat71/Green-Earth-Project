@@ -485,5 +485,55 @@ function renderCategories() {
   });
 }
 
+    /* ===========================
+   Load + Render Trees
+   =========================== */
+function loadTreesFor(category) {
+  showSpinner(true);
+  showingText.textContent = `Showing: ${category}`;
+  grid.innerHTML = ''; 
+  setTimeout(() => {
+    const filtered = category === 'All Trees' ? treesData : treesData.filter(t => t.category === category);
+    renderGrid(filtered);
+    showSpinner(false);
+  }, 600); 
+}
+
+function renderGrid(list) {
+  grid.innerHTML = '';
+  if (!list.length) {
+    grid.innerHTML = '<p class="empty">No trees available in this category.</p>';
+    return;
+  }
+  list.forEach(tree => {
+    const card = document.createElement('article');
+    card.className = 'card';
+    card.setAttribute('role','listitem');
+    const imgSrc = `./assets/${tree.image}`;
+    card.innerHTML = `
+      <img src="${imgSrc}" alt="${tree.name}" loading="lazy" onerror="this.onerror=null;this.src='./assets/placeholder.jpg'">
+      <h3 class="title" tabindex="0" data-id="${tree.id}">${escapeHtml(tree.name)}</h3>
+      <p class="desc">${escapeHtml(truncate(tree.description, 120))}</p>
+      <div style="display:flex;align-items:center;justify-content:space-between;">
+        <span class="cat-tag">${escapeHtml(tree.category)}</span>
+        <span class="price">৳${tree.price}</span>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:8px;">
+        <button class="add-btn" data-id="${tree.id}">Add to Cart</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  // add event listeners: add-to-cart and open modal on title
+  grid.querySelectorAll('.add-btn').forEach(b => {
+    b.addEventListener('click', () => addToCart(b.dataset.id));
+  });
+  grid.querySelectorAll('.title').forEach(t => {
+    t.addEventListener('click', () => openModal(t.dataset.id));
+    t.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openModal(t.dataset.id); });
+  });
+}
+
 </body>
 </html>
