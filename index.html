@@ -299,5 +299,39 @@
     </div>
   </article>
 
+  <div id="impact" class="impact-cards" aria-label="Impact statistics">
+    <div class="impact">
+      <strong id="impactTrees">500K+</strong>
+      <span>Trees Planted</span>
+    </div>
+    <div class="impact">
+      <strong id="impactCommunities">120+</strong>
+      <span>Communities Involved</span>
+    </div>
+    <div class="impact">
+      <strong id="impactCountries">30+</strong>
+      <span>Countries Reached</span>
+    </div>
+  </div>
+
+  <article id="plant" class="plant-section" aria-labelledby="plantTitle">
+    <h2 id="plantTitle" style="text-align:center;margin-top:0;">Plant a Tree Today</h2>
+    <form id="plantForm" class="plant-form" novalidate>
+      <input id="plant-name" name="name" type="text" placeholder="Your Name" required aria-required="true" />
+      <input id="plant-email" name="email" type="email" placeholder="Your Email" required aria-required="true" />
+      <select id="plant-amount" name="amount" required aria-required="true">
+        <option value="" disabled selected>Number of Trees</option>
+        <option value="1">1</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+      <button type="submit">Donate Now</button>
+    </form>
+  </article>
+</section>
+
 </body>
 </html>
